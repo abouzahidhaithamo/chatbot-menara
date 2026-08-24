@@ -1,0 +1,37 @@
+[
+  {
+    "id": "apropos",
+    "titre": "À propos de Ménara Université",
+    "contenu": "Ménara Université est une initiative stratégique portée par le Groupe Ménara Holding, fondée sur la volonté de structurer, transmettre et faire fructifier l'intelligence accumulée au fil de plusieurs décennies d'expertise industrielle, managériale et organisationnelle. C'est une véritable université d'entreprise, acteur de transformation, espace de recherche appliquée, de professionnalisation et d'innovation. Implantée à Marrakech, au sein du Centre d'Affaires Guelizium, elle propose une offre de formation diversifiée autour des grandes transitions économiques et sociétales : industrie 4.0, supply chain, ingénierie durable, transformation numérique, gouvernance responsable, finance, marketing, droit des affaires, etc. Elle s'appuie sur un réseau de partenaires académiques dont l'ISCAE Rabat, ESLI, SUPEMIR et d'autres institutions nationales et internationales, et conçoit des parcours diplômants et certifiants. Elle s'adresse aux collaborateurs du Groupe Ménara comme aux professionnels en quête d'évolution ou de spécialisation."
+  },
+  {
+    "id": "mission",
+    "titre": "Mission de Ménara Université",
+    "contenu": "La mission de Ménara Université se situe au croisement de l'excellence académique et de la pertinence opérationnelle. Ses ambitions : former des talents à fort potentiel dans des secteurs clés (finance, droit, marketing, logistique, génie civil, industrie 4.0, développement durable) ; développer des compétences hybrides (maîtrise technique, pensée critique, leadership responsable) ; créer des passerelles entre monde académique et monde économique via la recherche appliquée et les chaires collaboratives ; et contribuer au développement des territoires. Le modèle pédagogique est immersif, basé sur des situations réelles, des projets concrets et un accompagnement rapproché des apprenants."
+  },
+  {
+    "id": "valeurs",
+    "titre": "Valeurs de Ménara Université",
+    "contenu": "Les valeurs de Ménara Université traduisent l'esprit du Groupe Ménara : audace et innovation pédagogique (anticiper les mutations économiques, technologiques et sociales) ; rigueur et exigence de qualité (enseignements robustes, compétences immédiatement mobilisables) ; engagement et intégrité (former des citoyens engagés, conscients de l'impact de leurs décisions) ; et ouverture (transversalité, interdisciplinarité, partenariats académiques et professionnels au Maroc et à l'international)."
+  },
+  {
+    "id": "vision",
+    "titre": "Vision de Ménara Université",
+    "contenu": "Ménara Université ambitionne de s'imposer comme un acteur majeur de la transformation des compétences au service du progrès économique, social et environnemental du Maroc et du continent africain. Ses aspirations : former une nouvelle génération de décideurs visionnaires et responsables ; renforcer la souveraineté industrielle et les capacités d'innovation du Maroc ; créer des passerelles entre recherche, entreprise et territoires ; et redonner du sens à la montée en compétence en conjuguant rigueur académique, excellence opérationnelle et engagement sociétal."
+  },
+  {
+    "id": "poles_formation",
+    "titre": "Pôles de formation",
+    "contenu": "Ménara Université s'appuie sur plusieurs pôles de formation partenaires : ISCAE Rabat (mastères spécialisés en marketing & communication, finance, droit des affaires et fiscalité, développement des affaires & commerce international, stratégie & RSE, contrôle de gestion audit et comptabilité), ESLI, SUPEMIR, ainsi que des programmes de certificats."
+  },
+  {
+    "id": "iscae_mastere",
+    "titre": "Mastères Spécialisés ISCAE Rabat",
+    "contenu": "Le pôle ISCAE Rabat propose plusieurs mastères spécialisés : Marketing & Communication (MMC, lancé en 2010, formation de cadres spécialisés de haut niveau) ; Finance (préparation à des responsabilités supérieures dans les métiers de la finance, aspects conceptuels et opérationnels) ; Droit des Affaires et Fiscalité (connaissances théoriques et pratiques sur les impacts juridiques et fiscaux du monde des affaires) ; Développement des Affaires & Commerce International ; Stratégie, Développement Durable et RSE (gestion des grands enjeux et défis actuels des organisations) ; et Contrôle de Gestion, Audit et Comptabilité (fiabilité de l'information financière, gouvernance)."
+  },
+  {
+    "id": "contact",
+    "titre": "Coordonnées et horaires",
+    "contenu": "Adresse : Centre d'affaires Guelizium, Boulevard Mohammed V, Marrakech – Maroc. Téléphone : +212 5 24 37 49 00 ou +212 7 61 81 81 18 (WhatsApp). Horaires : du lundi au vendredi de 09h00 à 18h30, le samedi de 09h00 à 15h00, fermé le dimanche."
+  }
+]

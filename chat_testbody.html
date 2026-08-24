@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="chatbotcss.css">
+  <title>Chat boot</title>
+</head>
+<body>
+  <div id="chatlanceur" onclick="ouvrirChat()">
+  <div id="chat-bubble-bienvenue">
+  <span id="chat-bubble-fermer" onclick="fermerchatear(event)">✕</span>
+    Bonjour ! Je suis <strong>Haitham</strong>, l'assistante de Ménara Université.<br>
+    Cliquez pour discuter avec moi !
+  </div>
+  <img src="chatbootimg.png" id="chat-avatar">
+</div>
+
+<!-- La fenêtre de chat, cachée au début -->
+<div id="chatfenetre">
+  <div id="chat-entete">
+    <img src="chatbootimg.png" id="chat-img-header">
+    <div>
+      <div id="chattitre">Haitham</div>
+      <div id="chatsous-titre">Assistante Ménara Université</div>
+    </div>
+    <span id="chat-fermer" onclick="fermerChat(event)">✕</span>
+  </div>
+
+  <div id="chat-messages">
+    <div class="msgbot">
+      Bonjour 👋 Je suis Nour, l'assistante virtuelle de Ménara Université.
+      Posez-moi une question sur nos formations, notre mission ou nos coordonnées !
+    </div>
+  </div>
+
+  <div id="chat-saisie">
+    <input type="text" id="chat-input" placeholder="Écrivez votre message..." onkeydown="siEntree(event)">
+    <button id="bouton-envoyer" onclick="envoyerMessage()">➤</button>
+  </div>
+</div>
+
+</body>
+</html>
+<!-- ============ PARTIE 3 : le JavaScript (le comportement) ============ -->
+
+<script>
+  const URL_SERVEUR = "http://localhost:5000/chat";
+
+  let displaychatt = document.getElementById("chat-fenetre");
+  let chatlance = document.getElementById("chat-lanceur");
+  let exterchatt = document.getElementById("chat-bulle-bienvenue");
+
+  function ouvrirChat() {
+      displaychatt.style.display = "flex";
+      chatlance.style.display = "none";
+  }
+
+  function fermerChat() {
+    displaychatt.style.display = "none";
+    chatlance.style.display = "flex";
+  }
+
+  function fermerchatear(event) {
+    event.stopPropagation();
+    exterchatt.style.display = "none";
+  }
+
+  function siEntree(event) {
+    if (event.key === "Enter") {
+      envoyerMessage();
+    }
+  }
+
+  function ajouterMessage(texte, type) {
+    let zone = document.getElementById("chat-messages");
+    let chatcontex = document.createElement("div");
+    chatcontex.className = type === "utilisateur" ? "msg-utilisateur" : "msg-bot";
+    chatcontex.textContent = texte;
+    zone.appendChild(chatcontex);
+    zone.scrollTop = zone.scrollHeight;
+  }
+
+  async function envoyerMessage() {
+    console.log('bouton cliqué');
+    let input = document.getElementById("chat-input");
+    let question = input.value.trim();
+
+    if (!question) return;
+
+    ajouterMessage(question, "utilisateur");
+    input.value = "";
+    ajouterMessage("...", "bot");
+
+    const reponseHttp = await fetch(URL_SERVEUR, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: question }),
+    });
+
+    const data = await reponseHttp.json();
+
+    let zone = document.getElementById("chat-messages");
+    zone.removeChild(zone.lastChild);
+
+    ajouterMessage(data.reponse, "bot");
+  }
+</script>
