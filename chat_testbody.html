@@ -7,33 +7,34 @@
   <title>Chat boot</title>
 </head>
 <body>
+  <!-- La fenêtre de debut interface -->
   <div id="chatlanceur" onclick="ouvrirChat()">
   <div id="chat-bubble-bienvenue">
   <span id="chat-bubble-fermer" onclick="fermerchatear(event)">✕</span>
-    Bonjour ! Je suis <strong>Haitham</strong>, l'assistante de Ménara Université.<br>
+    Bonjour ! Je suis <strong>MU-AI (Ménara Université AI)</strong>, l'assistante de Ménara Université.<br>
     Cliquez pour discuter avec moi !
   </div>
   <img src="chatbootimg.png" id="chat-avatar">
 </div>
-
-<!-- La fenêtre de chat, cachée au début -->
+<!-- La fenêtre de chat, cachée au début  -->
+ <!-- La fenêtre de chat entette  -->
 <div id="chatfenetre">
   <div id="chat-entete">
     <img src="chatbootimg.png" id="chat-img-header">
     <div>
-      <div id="chattitre">Haitham</div>
+      <div id="chattitre">MU-AI</div>
       <div id="chatsous-titre">Assistante Ménara Université</div>
     </div>
     <span id="chat-fermer" onclick="fermerChat(event)">✕</span>
   </div>
-
+<!-- La fenêtre de message de bot -->
   <div id="chat-messages">
     <div class="msgbot">
-      Bonjour 👋 Je suis Nour, l'assistante virtuelle de Ménara Université.
+      Bonjour 👋 Je suis MU-AI , l'assistante virtuelle de Ménara Université.
       Posez-moi une question sur nos formations, notre mission ou nos coordonnées !
     </div>
   </div>
-
+ <!-- La fenêtre de saisir de msg -->
   <div id="chat-saisie">
     <input type="text" id="chat-input" placeholder="Écrivez votre message..." onkeydown="siEntree(event)">
     <button id="bouton-envoyer" onclick="envoyerMessage()">➤</button>
@@ -42,20 +43,18 @@
 
 </body>
 </html>
-<!-- ============ PARTIE 3 : le JavaScript (le comportement) ============ -->
-
 <script>
-  const URL_SERVEUR = "http://localhost:5000/chat";
+  const URLSERVEUR = "http://localhost:5000/chat";
 
-  let displaychatt = document.getElementById("chat-fenetre");
-  let chatlance = document.getElementById("chat-lanceur");
-  let exterchatt = document.getElementById("chat-bulle-bienvenue");
+  let displaychatt = document.getElementById("chatfenetre");
+  let chatlance = document.getElementById("chatlanceur");
+  let exterchatt = document.getElementById("chat-bubble-bienvenue");
 
   function ouvrirChat() {
       displaychatt.style.display = "flex";
       chatlance.style.display = "none";
+      document.getElementById("chat-input").focus();//pour que le curseur soit direct dans le chat
   }
-
   function fermerChat() {
     displaychatt.style.display = "none";
     chatlance.style.display = "flex";
@@ -82,7 +81,6 @@
   }
 
   async function envoyerMessage() {
-    console.log('bouton cliqué');
     let input = document.getElementById("chat-input");
     let question = input.value.trim();
 
@@ -92,16 +90,16 @@
     input.value = "";
     ajouterMessage("...", "bot");
 
-    const reponseHttp = await fetch(URL_SERVEUR, {
+    let  reponseHttp = await fetch(URLSERVEUR, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: question }),
     });
 
-    const data = await reponseHttp.json();
+    let data = await reponseHttp.json();
 
     let zone = document.getElementById("chat-messages");
-    zone.removeChild(zone.lastChild);
+    zone.removeChild(zone.lastChild); //remove the ...
 
     ajouterMessage(data.reponse, "bot");
   }

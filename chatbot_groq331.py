@@ -1,25 +1,22 @@
 import json
-import os
 import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from dotenv import load_dotenv
-load_dotenv("grokkey.env")
+import os
 app = Flask(__name__)
 CORS(app)
 
 # Récupère-la gratuitement sur : https://console.groq.com/keys
-MA_CLE_API = os.environ.get("GROQ_API_KEY")
+CLEAPI = os.environ.get("GROQ_API_KEY")
 
-URL_API = "https://api.groq.com/openai/v1/chat/completions"
+URLAPI = "https://api.groq.com/openai/v1/chat/completions"
 
  #fonction pour ouvrire fichie json et transforme fiche en donne python (r= read)
 def charger_connaissances():
     fichier = open("knowledge_base.json", "r", encoding="utf-8")
-    donnees = json.load(fichier)
+    donnees = json.load(fichier)#transport le fichie json objet en objet python 
     fichier.close()
     return donnees
-
 
 def chercher_info_utile(question, connaissances):
     question = question.lower()
@@ -77,7 +74,7 @@ def demander_a_groq(question, fiche, connaissances):
     )
 
     headers = {
-        "Authorization": "Bearer " + MA_CLE_API,
+        "Authorization": "Bearer " + CLEAPI,
         "Content-Type": "application/json",
     }
     # une liste "messages" avec des rôles "system" et "user"
@@ -89,27 +86,25 @@ def demander_a_groq(question, fiche, connaissances):
         ],
     }
 
-    reponse = requests.post(URL_API, headers=headers, json=donnees)
+    reponse = requests.post(URLAPI, headers=headers, json=donnees)
     #verifie si ila une erreur
     if reponse.status_code != 200:
         return "Erreur : " + reponse.text
     resultat = reponse.json()
     return resultat["choices"][0]["message"]["content"]
 
-# ---- Le programme démarre ici ----
-
+# Le programme démarre ici:
 print("Chargement...")
 connaissances = charger_connaissances()
 print("Chatbot prêt ! (écris 'quit' pour arrêter)")
-
 @app.route("/chat", methods=["POST"])
 def chat(): 
     #recupere le message de frontend
-    data = request.get_json(force=True)
+    data = request.get_json(force=True)     
     #enleve les espace de msg
     question = (data.get("message") or "").strip()
     if not question:#voir si le message vide si ila une error 
-        return jsonify({"error": "Message vide"}), 400
+        return jsonify({"error": "Message vide"}), 400  
     infos = chercher_info_utile(question, connaissances)
     reponse = demander_a_groq(question, infos, connaissances)
     #reourne la reponse a frontend
